@@ -1,0 +1,12 @@
+# Datatypes (KEYWORD1)
+GU140X32F_7703A	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+drawPixel	KEYWORD2
+display	KEYWORD2
+clear	KEYWORD2
+
+# Instances (KEYWORD2)
+
+
+# Constants (LITERAL1)
