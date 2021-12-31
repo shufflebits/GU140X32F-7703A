@@ -16,9 +16,9 @@
 #define RESET reset
 
 
-#define DIRECTION(X,D)  if (D) {pinMode(X, OUTPUT); DEBUG_SIG(#X "_PIN-OUT");} else {pinMode(X, INPUT); DEBUG_SIG(#X "_PIN-IN");}
-#define RAISE(X)  (digitalWrite(X, HIGH), DEBUG_SIG(#X "_PIN-HIGH"))
-#define LOWER(X)  (digitalWrite(X, LOW), DEBUG_SIG(#X "_PIN-LOW"))
+#define DIRECTION(X,D)  if (D) {pinMode(X, OUTPUT);} else {pinMode(X, INPUT);}
+#define RAISE(X)  digitalWrite(X, HIGH)
+#define LOWER(X)  digitalWrite(X, LOW)
 #define CHECK(X)  digitalRead(X)
 
 
@@ -51,8 +51,8 @@ void GU140X32F_7703A::vfdWrite16(uint16_t data) {
   while (CHECK(BUSY));
   for (uint16_t i=1; i; i<<=1) {
      LOWER(SCK);
+     digitalWrite(OUT, (data & i));
      _delay_us(1);
-     if (data & i) RAISE(OUT); else LOWER(OUT);
      RAISE(SCK);
      _delay_us(1);
    }
@@ -63,13 +63,11 @@ void GU140X32F_7703A::vfdWrite8(uint8_t data) {
   DEBUG_TXT("write: ");
   DEBUG_NUM(data);
   DEBUG_OUT("");
-  digitalWrite(13,1);
   while (CHECK(BUSY));
-  digitalWrite(13,0);
   for (uint8_t i=1; i; i<<=1) {
      LOWER(SCK);
+     digitalWrite(OUT, (data & i));
      _delay_us(1);
-     if (data & i) RAISE(OUT); else LOWER(OUT);
      RAISE(SCK);
      _delay_us(1);
    }
