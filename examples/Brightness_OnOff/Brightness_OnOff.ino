@@ -32,16 +32,16 @@ void loop() {
             vfd.print("Brightness:");
             vfd.print(brightness);
             vfd.brightness(brightness);
-            vfd.display(0);
+            vfd.display();
         } else if (brightness == 101) {
             vfd.clear();
             vfd.print("display_off");
-            vfd.display(0);
+            vfd.display();
         } else if (brightness == 120) {
             vfd.brightness(0);
             vfd.clear();
             vfd.print("display_on");
-            vfd.display(0);
+            vfd.display();
         } else if (brightness == 130) {
             vfd.brightness(100);
         } else if (brightness > 140) {

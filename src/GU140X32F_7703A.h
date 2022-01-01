@@ -7,7 +7,7 @@ class GU140X32F_7703A: public Adafruit_GFX {
 public:
     GU140X32F_7703A(uint8_t sin, uint8_t sbusy, uint8_t sck, uint8_t reset);
     void drawPixel(int16_t x, int16_t y, uint16_t color);
-    void display(int16_t extend);
+    void display();
     void displayOn(bool on);
     void brightness(uint8_t level);
     void clear();

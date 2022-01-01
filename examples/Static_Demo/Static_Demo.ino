@@ -41,7 +41,7 @@ void setup() {
     vfd.print("https://github.com/");
     vfd.setCursor(3,28);
     vfd.print("shufflebits/GU140X32F-7703A");
-    vfd.display(0);
+    vfd.display();
 
 }
 

@@ -42,6 +42,6 @@ void loop() {
   vfd.setCursor(0,28);
   
   vfd.print(nextCount);
-  vfd.display(0);
+  vfd.display();
   lastCount++;
 }

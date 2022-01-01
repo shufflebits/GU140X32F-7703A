@@ -138,13 +138,11 @@ void GU140X32F_7703A::drawPixel(int16_t x, int16_t y, uint16_t color) {
     }
 }
 
-void GU140X32F_7703A::display(int16_t extend){
+void GU140X32F_7703A::display(){
   if (maxX >=0){
-    maxX += extend + 1;
-    minX -= extend;
     minX = minX >=0 ? minX : 0;
     maxX = maxX <=140 ? maxX : 140;
-    int16_t width = maxX - minX;
+    int16_t width = maxX - minX + 1;
     int16_t startIdx  = minX * 4;
     setVFDCursor(minX,0);
     vfdWriteImageData(&buf[startIdx],width,4);
