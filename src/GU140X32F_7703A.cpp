@@ -21,6 +21,13 @@
 #define LOWER(X)  digitalWrite(X, LOW)
 #define CHECK(X)  digitalRead(X)
 
+#ifdef ESP8266
+#define DELAY_CLOCK delayMicroseconds(1)
+#define DELAY_END_WORD delayMicroseconds(17)
+#else
+#define DELAY_CLOCK _delay_us(1)
+#define DELAY_END_WORD _delay_us(17)
+#endif
 
 GU140X32F_7703A::GU140X32F_7703A(uint8_t sin, uint8_t sbusy, uint8_t sck, uint8_t reset) : Adafruit_GFX(140, 32)
 {
@@ -52,11 +59,11 @@ void GU140X32F_7703A::vfdWrite16(uint16_t data) {
   for (uint16_t i=1; i; i<<=1) {
      LOWER(SCK);
      digitalWrite(OUT, (data & i));
-     _delay_us(1);
+     DELAY_CLOCK;
      RAISE(SCK);
-     _delay_us(1);
+     DELAY_CLOCK;
    }
-   _delay_us(17);
+   DELAY_END_WORD;
 }
 
 void GU140X32F_7703A::vfdWrite8(uint8_t data) {
@@ -66,12 +73,13 @@ void GU140X32F_7703A::vfdWrite8(uint8_t data) {
   while (CHECK(BUSY));
   for (uint8_t i=1; i; i<<=1) {
      LOWER(SCK);
+
      digitalWrite(OUT, (data & i));
-     _delay_us(1);
+     DELAY_CLOCK;
      RAISE(SCK);
-     _delay_us(1);
+     DELAY_CLOCK;
    }
-   _delay_us(17);
+   DELAY_END_WORD;
 }
 
 void GU140X32F_7703A::hardReset() {
