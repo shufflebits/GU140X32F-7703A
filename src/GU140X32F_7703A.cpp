@@ -1,14 +1,13 @@
 #include "GU140X32F_7703A.h"
 
-
 //#define DEBUG_TXT(x)  Serial.print(x)
-#define DEBUG_TXT(x)  0
+#define DEBUG_TXT(x) 
 //#define DEBUG_NUM(x)  Serial.print(x, HEX)
-#define DEBUG_NUM(x)  0
+#define DEBUG_NUM(x) 
 //#define DEBUG_OUT(x)  Serial.println(x)
-#define DEBUG_OUT(x) 0
+#define DEBUG_OUT(x) 
 //#define DEBUG_SIG(x)  Serial.println(x)
-#define DEBUG_SIG(x) 0
+#define DEBUG_SIG(x) 
 
 #define OUT sin
 #define BUSY sbusy
@@ -21,7 +20,7 @@
 #define LOWER(X)  digitalWrite(X, LOW)
 #define CHECK(X)  digitalRead(X)
 
-#ifdef ESP8266
+#if defined(ESP8266) || defined(ESP32)
 #define DELAY_CLOCK delayMicroseconds(1)
 #define DELAY_END_WORD delayMicroseconds(17)
 #else
